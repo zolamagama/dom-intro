@@ -18,48 +18,49 @@ const callTotalCost = document.querySelector(".callTotalOne");
 
 const total = document.querySelector(".totalOne");
 
-
 const billTypeText = document.querySelector(".billTypeText");
 
-var callTotal = 0;
-var smsTotal = 0;
+
+var callTotal=0;
+ var smsTotal=0;
 function textinputbill(textInput) {
-    var bString = textInput.split(",");
-    for (var i = 0; i < bString.length; i++) {
-        var billItems = bString[i].trim();
-        if (billItems === 'sms') {
+var bString =textInput.split(",") ;
+for (var i = 0;i<bString.length;i++) {
+var billItems = bString[i].trim();
+if (billItems === 'sms'){
 
-            smsTotal += 0.75;
+smsTotal += 0.75;
 
-        } else if (billItems === 'call') {
-            callTotal += 2.75;
-
-        }
-    }
-    var totalCost = (smsTotal + callTotal).toFixed(2)
-    return totalCost
+} else if (billItems === 'call') {
+callTotal += 2.75;
 
 }
-function style(current) {
-    var bill = Number(current);
+                  }
+  var totalCost=(smsTotal+callTotal).toFixed(2)
+return totalCost
+ 
+}
+function style(totalCost){
+var bill=Number(totalCost);
 
-    total.classList.remove('warning');
+         total.classList.remove("warning");
 
-    total.classList.remove('danger')
-    if (bill >= 50) {
-        total.classList.add('danger');
+         total.classList.remove("danger")
+ if ( bill >= 50){
+         total.classList.add("danger");
     }
-    else if (bill >= 30 && bill <= 50) {
-        total.classList.add('warning');
-    }
+    else if (bill >= 30  && bill <= 50 ){
+        total.classList.add("warning");
+   }
 }
 
-function clickFunction() {
-    var string = billTypeText.value;
-    totalCost = textinputbill(string);
-    smsTotalCost.innerHTML = smsTotal.toFixed(2);
-    callTotalCost.innerHTML = callTotal.toFixed(2);
-    style(total)
-    total.innerHTML = total;
-}
-addToBillBtn.addEventListener('click',clickFunction)
+function clickFunction(){
+  var string=billTypeText.value;
+totalCost=   textinputbill(string);
+  smsTotalCost.innerHTML=smsTotal.toFixed(2);
+  callTotalCost.innerHTML=callTotal.toFixed(2);
+  total.innerHTML=totalCost;
+style(totalCost)
+ }
+addToBillBtn.addEventListener("click",clickFunction);
+

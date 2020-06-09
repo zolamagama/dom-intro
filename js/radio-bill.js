@@ -18,8 +18,7 @@ const totalElem = document.querySelector(".totalTwo")
 var callTotal = 0;
 var smsTotal = 0;
 function tCostOfBill(x) {
-    //for (var i = 0;i<bString.length;i++) 
-    //var billItems = bString[i].trim();
+
     if (x === 'sms') {
 
         smsTotal += 0.75;
@@ -51,7 +50,7 @@ function clicked() {
         // billItemType will be 'call' or 'sms'
 
 
-        var total = tCostOfBill(y);
+        var total = tCostOfBill(x);
         smsTotalCostElem.innerHTML = smsTotal.toFixed(2);
         callTotalCostElem.innerHTML = callTotal.toFixed(2);
         style(total)
