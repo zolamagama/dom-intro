@@ -66,7 +66,7 @@ function styleTotal(roundedBillTotal) {
         totalCostElem.classList.add("warning");
     }
 
-    else if (currentTotal > critLevel) {
+    else if (currentTotal >= critLevel) {
         //make red
         totalCostElem.classList.add("danger")
 
@@ -78,7 +78,7 @@ function clicked() {
     var radioSmsCall = document.querySelector("input[name='billItemTypeWithSettings']:checked");
 
     var item = radioSmsCall.value;
-    if (allCostTotal < critLevel) {
+    if (allCostTotal <= critLevel) {
 
 
         tCostOfBill(item);

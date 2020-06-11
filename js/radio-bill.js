@@ -14,27 +14,32 @@ const radioBillBtnElem = document.querySelector(".radioBillAddBtn")
 const callTotalCostElem = document.querySelector(".callTotalTwo")
 const smsTotalCostElem = document.querySelector(".smsTotalTwo")
 const totalElem = document.querySelector(".totalTwo")
-
-var callTotal = 0;
-var smsTotal = 0;
-function tCostOfBill(x) {
-
-    if (x === 'sms') {
-
-        smsTotal += 0.75;
-
-    } else if (x === 'call') {
-        callTotal += 2.75;
+var callTotal2 = 0;
+var smsTotal2 = 0;
+var totalCost = 0;
+function clicked() {
+    var checkedRadioBtn = document.querySelector("input[name='billItemType']:checked");
+    if (checkedRadioBtn) {
+        var x = checkedRadioBtn.value
+        // billItemType will be 'call' or 'sms'
+        smsTotalCostElem.innerHTML = smsTotal2.toFixed(2);
+        callTotalCostElem.innerHTML = callTotal2.toFixed(2);
+        style()
+        totalElem.innerHTML = tcostBill(x);
     }
-
-    var totalCost = (smsTotal + callTotal).toFixed(2)
-    return totalCost
 }
-function style(current) {
-    const bill = Number(current);
-
+function tcostBill(y) {
+    if (y === 'sms') {
+        smsTotal2 += 0.75;
+    }
+    else if (y === 'call') {
+        callTotal2 += 2.75;
+    }
+    return totalCost = (smsTotal2 + callTotal2).toFixed(2)
+}
+function style() {
+    const bill = Number(totalCost);
     totalElem.classList.remove("warning");
-
     totalElem.classList.remove("danger")
     if (bill >= 50) {
         totalElem.classList.add("danger");
@@ -43,20 +48,4 @@ function style(current) {
         totalElem.classList.add("warning");
     }
 }
-function clicked() {
-    var checkedRadioBtn = document.querySelector("input[name='billItemType']:checked");
-    if (checkedRadioBtn) {
-        var x = checkedRadioBtn.value
-        // billItemType will be 'call' or 'sms'
-
-
-        var total = tCostOfBill(x);
-        smsTotalCostElem.innerHTML = smsTotal.toFixed(2);
-        callTotalCostElem.innerHTML = callTotal.toFixed(2);
-        style(total)
-        totalElem.innerHTML = total;
-
-    }
-}
-
 radioBillBtnElem.addEventListener('click', clicked)

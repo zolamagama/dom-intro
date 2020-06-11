@@ -16,7 +16,7 @@ const smsTotalCost = document.querySelector(".smsTotalOne");
 
 const callTotalCost = document.querySelector(".callTotalOne");
 
-const total = document.querySelector(".totalOne");
+const totalElem2 = document.querySelector(".totalOne");
 
 const billTypeText = document.querySelector(".billTypeText");
 
@@ -41,17 +41,17 @@ function textinputbill(textInput) {
     return totalCost
 
 }
-function style(totalCost) {
+function styleCode(totalCost) {
     var bill = Number(totalCost);
 
-    color.classList.remove("warning");
+    totalElem2.classList.remove("warning");
 
-    color.classList.remove("danger")
+    totalElem2.classList.remove("totaldanger")
     if (bill >= 50) {
-        color.classList.add("danger");
+        totalElem2.classList.add("danger");
     }
     else if (bill >= 30 && bill < 50) {
-        color.classList.add("warning");
+        totalElem2.classList.add("warning");
     }
 }
 
@@ -60,8 +60,8 @@ function clickFunction() {
     var totalCost = textinputbill(string);
     smsTotalCost.innerHTML = smsTotal.toFixed(2);
     callTotalCost.innerHTML = callTotal.toFixed(2);
-    total.innerHTML = totalCost;
-    style(totalCost)
+    styleCode(totalCost)
+    totalElem2.innerHTML = totalCost;
 }
 addToBillBtn.addEventListener("click", clickFunction);
 
