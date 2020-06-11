@@ -59,16 +59,16 @@ function tCostOfBill(billItemType) {
 }
 function styleTotal(roundedBillTotal) {
     const currentTotal = Number(roundedBillTotal);
-    colorElem.classList.remove("danger");
-    colorElem.classList.remove("warning");
+    totalCostElem.classList.remove("danger");
+    totalCostElem.classList.remove("warning");
     if (currentTotal >= warnLevel && currentTotal < critLevel) {
         //make orange
-        colorElem.classList.add("warning");
+        totalCostElem.classList.add("warning");
     }
 
     else if (currentTotal > critLevel) {
         //make red
-        colorElem.classList.add("danger")
+        totalCostElem.classList.add("danger")
 
     }
 
