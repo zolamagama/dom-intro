@@ -46,7 +46,7 @@ function style(current) {
 function clicked() {
     var checkedRadioBtn = document.querySelector("input[name='billItemType']:checked");
     if (checkedRadioBtn) {
-        var y = checkedRadioBtn.value
+        var x = checkedRadioBtn.value
         // billItemType will be 'call' or 'sms'
 
 

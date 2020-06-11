@@ -37,6 +37,15 @@ var critLevel=0;
 var smsCostTotal=0;
 var callCostTotal=0;
 var allCostTotal=0;
+function update(){
+  
+    callCostVal=Number(callCost.value);
+     smsCostVal=Number(smsCost.value);
+      warnLevel=Number(warningLevel.value);
+    critLevel=Number(criticalLevel.value);
+      // styleTotal(allCostTotal); 
+   
+       }
  function tCostOfBill(billItemType) {
             if (billItemType === "call") {
         callCostTotal+=callCostVal;
