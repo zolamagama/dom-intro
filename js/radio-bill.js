@@ -13,7 +13,7 @@
 const radioBillBtnElem = document.querySelector(".radioBillAddBtn")
 const callTotalCostElem = document.querySelector(".callTotalTwo")
 const smsTotalCostElem = document.querySelector(".smsTotalTwo")
-const totalElem = document.querySelector(".totalTwo")
+const totalElem3 = document.querySelector(".totalTwo")
 var callTotal2 = 0;
 var smsTotal2 = 0;
 var totalCost = 0;
@@ -24,8 +24,9 @@ function clicked() {
         // billItemType will be 'call' or 'sms'
         smsTotalCostElem.innerHTML = smsTotal2.toFixed(2);
         callTotalCostElem.innerHTML = callTotal2.toFixed(2);
-        style()
-        totalElem.innerHTML = tcostBill(x);
+        styleCost()
+        totalElem3.innerHTML = tcostBill(x);
+
     }
 }
 function tcostBill(y) {
@@ -35,17 +36,18 @@ function tcostBill(y) {
     else if (y === 'call') {
         callTotal2 += 2.75;
     }
-    return totalCost = (smsTotal2 + callTotal2).toFixed(2)
+    var totalCost = (smsTotal2 + callTotal2).toFixed(2)
+    return totalCost
 }
-function style() {
+function styleCost() {
     const bill = Number(totalCost);
-    totalElem.classList.remove("warning");
-    totalElem.classList.remove("danger")
+    totalElem3.classList.remove("warning");
+    totalElem3.classList.remove("danger")
     if (bill >= 50) {
-        totalElem.classList.add("danger");
+        totalElem3.classList.add("danger");
     }
-    else if (bill >= 30 && bill <= 50) {
-        totalElem.classList.add("warning");
+    else if (bill >= 30 && bill < 50) {
+        totalElem3.classList.add("warning");
     }
 }
 radioBillBtnElem.addEventListener('click', clicked)
