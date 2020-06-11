@@ -22,46 +22,46 @@ const billTypeText = document.querySelector(".billTypeText");
 
 const color = document.querySelector(".red");
 
-var callTotal=0;
- var smsTotal=0;
+var callTotal = 0;
+var smsTotal = 0;
 function textinputbill(textInput) {
-var bString =textInput.split(",") ;
-for (var i = 0;i<bString.length;i++) {
-var billItems = bString[i].trim();
-if (billItems === 'sms'){
+    var bString = textInput.split(",");
+    for (var i = 0; i < bString.length; i++) {
+        var billItems = bString[i].trim();
+        if (billItems === 'sms') {
 
-smsTotal += 0.75;
+            smsTotal += 0.75;
 
-} else if (billItems === 'call') {
-callTotal += 2.75;
+        } else if (billItems === 'call') {
+            callTotal += 2.75;
 
-}
-                  }
-  var totalCost=(smsTotal+callTotal).toFixed(2)
-return totalCost
- 
-}
-function style(totalCost){
-var bill = Number(totalCost);
-
-         color.classList.remove("warning");
-
-         color.classList.remove("danger")
- if ( bill >= 50){
-    color.classList.add("danger");
+        }
     }
-    else if (bill >= 30  && bill < 50 ){
+    var totalCost = (smsTotal + callTotal).toFixed(2)
+    return totalCost
+
+}
+function style(totalCost) {
+    var bill = Number(totalCost);
+
+    color.classList.remove("warning");
+
+    color.classList.remove("danger")
+    if (bill >= 50) {
+        color.classList.add("danger");
+    }
+    else if (bill >= 30 && bill < 50) {
         color.classList.add("warning");
-   }
+    }
 }
 
-function clickFunction(){
-  var string = billTypeText.value;
-  var totalCost = textinputbill(string);
-  smsTotalCost.innerHTML=smsTotal.toFixed(2);
-  callTotalCost.innerHTML=callTotal.toFixed(2);
-  total.innerHTML=totalCost;
-style(totalCost)
- }
-addToBillBtn.addEventListener("click",clickFunction);
+function clickFunction() {
+    var string = billTypeText.value;
+    var totalCost = textinputbill(string);
+    smsTotalCost.innerHTML = smsTotal.toFixed(2);
+    callTotalCost.innerHTML = callTotal.toFixed(2);
+    total.innerHTML = totalCost;
+    style(totalCost)
+}
+addToBillBtn.addEventListener("click", clickFunction);
 
