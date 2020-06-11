@@ -80,14 +80,6 @@ callCostElem.innerHTML =callCostTotal.toFixed(2);
 styleTotal(allCostTotal);
   
 }
-function update(){
-  
- callCostVal=Number(callCost.value);
-  smsCostVal=Number(smsCost.value);
-   warnLevel=Number(warningLevel.value);
- critLevel=Number(criticalLevel.value);
-    styleTotal(allCostTotal); 
 
-    }
 btnAdd.addEventListener("click",clicked);
 btnUpd.addEventListener("click",update)
