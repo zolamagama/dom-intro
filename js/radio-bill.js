@@ -6,40 +6,53 @@
 // * add the appropriate value to the running total
 // * add nothing for invalid values that is not 'call' or 'sms'.
 // * display the latest total on the screen
-const radioBillBtnElem = document.querySelector(".radioBillAddBtn")
-const callTotalCostElem = document.querySelector(".callTotalTwo")
-const smsTotalCostElem = document.querySelector(".smsTotalTwo")
-const totalElem = document.querySelector(".totalTwo")
+const radioBillAddBtnElement = document.querySelector(".radioBillAddBtn");
+
+const smsTotalTwoElement = document.querySelector(".smsTotalTwo");
+
+const callTotalTwoElement  = document.querySelector(".callTotalTwo");
+
+const totalTwoElement  = document.querySelector(".totalTwo");
+
+//const billItemTypeRadioElement  = document.querySelector(".billItemTypeRadio");
+
+//const billTypeText = document.querySelector(".billTypeText");
+
+var smsTotal2= 0;
 var callTotal2 = 0;
-var smsTotal2 = 0;
-//var totalCost = 0;
-function clicked() {
-    var checkedRadioBtn = document.querySelector("input[name='billItemType']:checked");
-        var x = checkedRadioBtn.value
-        // billItemType will be 'call' or 'sms'
-        smsTotalCostElem.innerHTML = smsTotal2.toFixed(2);
-        callTotalCostElem.innerHTML = callTotal2.toFixed(2);
-        var totalCost = smsTotal2 + callTotal2;
-       // styleCost(totalCost)
-        totalElem.innerHTML = totalCost.toFixed(2);
-    
 
-    if (x === 'sms') {
-        smsTotal2 += 0.75;
-    }
-    else if (x === 'call') {
-        callTotal2 += 2.75;
-    }
-    
-   // return totalCost
+function radioBillTotal(){
+  
+var checkedRadio = document.querySelector("input[name='billItemType']:checked");
+var x = checkedRadio.value;
+//console.log(billString)
 
-  //  totalElem.classList.remove("warning");
-  //  totalElem.classList.remove("danger")
-    if (totalCost >= 50) {
-        totalElem.classList.add("danger");
-    }
-    else if (totalCost >= 30 && totalCost < 50) {
-        totalElem.classList.add("warning");
-    }
+if (x === 'call'){
+callTotal2 += 2.75;
+} else if (x === 'sms'){
+smsTotal2 += 0.75;
 }
-radioBillBtnElem.addEventListener("click", clicked)
+  // update your DOM here - callTotal, SmsTotal and GrandTotal
+
+
+callTotalTwoElement.innerHTML= callTotal2.toFixed(2);
+smsTotalTwoElement.innerHTML= smsTotal2.toFixed(2);
+var totalCost = callTotal2 + smsTotal2;
+totalTwoElement.innerHTML= totalCost.toFixed(2);
+
+
+
+
+
+ if (totalCost>= 50){
+         totalTwoElement.classList.add("danger");
+    }
+    else if (totalCost >= 30){
+        totalTwoElement.classList.add("warning");
+   }
+
+
+// call the correct function here, the one with your logic
+}
+  
+radioBillAddBtnElement.addEventListener("click", radioBillTotal);

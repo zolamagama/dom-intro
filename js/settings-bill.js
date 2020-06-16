@@ -82,12 +82,12 @@ function clicked() {
 
 
         tCostOfBill(item);
-    }
+    
     callCostElem.innerHTML = callCostTotal.toFixed(2);
     smsCostElem.innerHTML = smsCostTotal.toFixed(2)
     totalCostElem.innerHTML = allCostTotal.toFixed(2);
     styleTotal(allCostTotal);
-
+    }
 }
 
 btnAdd.addEventListener("click", clicked);
