@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.min.js"></script>
+</head>
+
+<body>
+    <div id="mocha"></div>
+    <script>
+        mocha.setup('bdd');
+        var assert = chai.assert;
+    </script>
+
+    <script src="./factory/settings-factory-bill.js" charset="utf-8"></script>
+    <script src="./test/settingsTest-Bill.js" charset="utf-8"></script>
+    <script src="./factory/calculate-factory-bill.js" charset="utf-8"></script>
+    <script src="./test/calculateTest-Bill.js" charset="utf-8"></script>
+    <script src="./factory/radio-factory-bill.js" charset="utf-8"></script>
+    <script src="./test/radioTest-bill.js" charset="utf-8"></script>
+    <script src="./factory/text-factory-bill.js" charset="utf-8"></script>
+    <script src="./test/textTest-bill.js" charset="utf-8"></script>
+    <script>
+        mocha.checkLeaks();
+        mocha.run();
+    </script>
+</body>
+
+</html>
