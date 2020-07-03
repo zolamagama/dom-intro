@@ -1,4 +1,4 @@
-describe('The calculateBill function' , function(){
+describe('The calculate bill function' , function(){
     it('Should check if call cost is equal to 2.75' , function(){
         var billItemType = CalculateBill();
         billItemType.billType("call");
