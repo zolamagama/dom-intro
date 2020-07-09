@@ -52,7 +52,7 @@ describe('The calculate bill function' , function(){
 
         assert.equal(billItemType.color(), "warning");
     })
-    it('Should return a class name of warning if total reached 30', function(){
+    it('Should return a class name of danger if total reached 30', function(){
         var billItemType = CalculateBill();
 
         billItemType.billType("call");
@@ -74,6 +74,6 @@ describe('The calculate bill function' , function(){
         billItemType.billType("call");
         billItemType.billType("call");
 
-        assert.equal(billItemType.color(), "critical");
+        assert.equal(billItemType.color(), "danger");
     })
 });

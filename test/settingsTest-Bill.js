@@ -86,9 +86,9 @@ settingsBill.setCriticalLevel(10);
     settingsBill.setCallCost(2.25); 
    settingsBill.setSmsCost(0.70);
     
-   settingsBill.makeCall();
-   settingsBill.makeCall();
-   settingsBill.makeCall();
+   settingsBill.calculateTot("call");
+   settingsBill.calculateTot("call");
+   settingsBill.calculateTot("call");
 
 
    assert.equal(6.75, settingsBill.getTotalCallCost());
@@ -103,8 +103,8 @@ settingsBill.setCriticalLevel(10);
   settingsBill.setCallCost(1.35); 
  settingsBill.setSmsCost(0.70);
   
- settingsBill.makeCall();
- settingsBill.makeCall();
+ settingsBill.calculateTot("call");
+ settingsBill.calculateTot("call");
 
  assert.equal(2.70, settingsBill.getTotalCallCost());
  assert.equal(0.00, settingsBill.getTotalSmsCost());
@@ -118,8 +118,8 @@ settingsBill.setCriticalLevel(10);
 settingsBill.setCallCost(1.35); 
 settingsBill.setSmsCost(0.85);
 
-settingsBill.sendSms();
-settingsBill.sendSms();
+settingsBill.calculateTot("sms");
+settingsBill.calculateTot("sms");
 
 assert.equal(0.00, settingsBill.getTotalCallCost());
 assert.equal(1.70, settingsBill.getTotalSmsCost());
@@ -132,9 +132,9 @@ settingsBill.setCriticalLevel(10);
 settingsBill.setCallCost(1.35); 
 settingsBill.setSmsCost(0.85);
 
-settingsBill.makeCall();
-settingsBill.sendSms();
-settingsBill.sendSms();
+settingsBill.calculateTot("call");
+settingsBill.calculateTot("sms");
+settingsBill.calculateTot("sms");
 
 assert.equal(1.35, settingsBill.getTotalCallCost());
 assert.equal(1.70, settingsBill.getTotalSmsCost());
@@ -153,11 +153,11 @@ settingsBill.setWarningLevel(5);
 settingsBill.setCriticalLevel(10);
 
 
-settingsBill.makeCall();
-settingsBill.makeCall();
-settingsBill.makeCall();
-settingsBill.sendSms();
-settingsBill.sendSms();
+settingsBill.calculateTot("call");
+settingsBill.calculateTot("call");
+settingsBill.calculateTot("call");
+settingsBill.calculateTot("sms");
+settingsBill.calculateTot("sms");
 
     assert.equal("warning", settingsBill.totalClassName());
 
@@ -172,12 +172,12 @@ settingsBill.setCallCost(2.50);
 settingsBill.setSmsCost(0.75);
 settingsBill.setCriticalLevel(10);
 
-settingsBill.makeCall();
-settingsBill.makeCall();
-settingsBill.makeCall();
-settingsBill.makeCall();
-settingsBill.sendSms();
-settingsBill.sendSms();
+settingsBill.calculateTot("call");
+settingsBill.calculateTot("call");
+settingsBill.calculateTot("call");
+settingsBill.calculateTot("call");
+settingsBill.calculateTot("sms");
+settingsBill.calculateTot("sms");
 
     assert.equal("danger" , settingsBill.totalClassName());
 
@@ -192,11 +192,11 @@ settingsBill.setCallCost(2.50);
 settingsBill.setSmsCost(0.75);
 settingsBill.setCriticalLevel(10);
 
-settingsBill.makeCall();
-settingsBill.makeCall();
-settingsBill.makeCall();
-settingsBill.makeCall();
-settingsBill.makeCall();
+settingsBill.calculateTot("call");
+settingsBill.calculateTot("call");
+settingsBill.calculateTot("call");
+settingsBill.calculateTot("call");
+settingsBill.calculateTot("call");
 
     assert.equal("danger", settingsBill.totalClassName());
     assert.equal(10, settingsBill.getTotalCallCost());
@@ -213,11 +213,11 @@ settingsBill.setSmsCost(0.75);
 settingsBill.setWarningLevel(8);
 settingsBill.setCriticalLevel(10);
 
-settingsBill.makeCall();
-settingsBill.makeCall();
-settingsBill.makeCall();
-settingsBill.makeCall();
-settingsBill.makeCall();
+settingsBill.calculateTot("call");
+settingsBill.calculateTot("call");
+settingsBill.calculateTot("call");
+settingsBill.calculateTot("call");
+settingsBill.calculateTot("call");
 
     assert.equal("danger", settingsBill.totalClassName());
     assert.equal(10, settingsBill.getTotalCallCost());
@@ -225,8 +225,8 @@ settingsBill.makeCall();
     settingsBill.setCriticalLevel(20);
 
     assert.equal("warning", settingsBill.totalClassName());
-    settingsBill.makeCall();
-    settingsBill.makeCall();
+    settingsBill.calculateTot("call");
+    settingsBill.calculateTot("call");
     assert.equal(15, settingsBill.getTotalCallCost());
 
     

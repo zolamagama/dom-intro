@@ -30,65 +30,40 @@ const warningLevel = document.querySelector(".warningLevelSetting");
 const totalCostElem = document.querySelector(".totalSettings");
 const callCostElem = document.querySelector(".callTotalSettings");
 const smsCostElem = document.querySelector(".smsTotalSettings");
-var smsCostVal = 0;
-var callCostVal = 0;
-var warnLevel = 0;
-var critLevel = 0;
-var smsCostTotal = 0;
-var callCostTotal = 0;
-var allCostTotal = 0;
+const calculateBillWithSettings = BillWithSettings();
+
 function update() {
 
-    callCostVal = Number(callCost.value);
-    smsCostVal = Number(smsCost.value);
-    warnLevel = Number(warningLevel.value);
-    critLevel = Number(criticalLevel.value);
-    styleTotal(allCostTotal);
+    var callCostVal = Number(callCost.value);
+    var smsCostVal = Number(smsCost.value);
+    var warnLevel = Number(warningLevel.value);
+    var critLevel = Number(criticalLevel.value);
+    calculateBillWithSettings.setCallCost(callCostVal);
+    calculateBillWithSettings.setSmsCost(smsCostVal);
+    calculateBillWithSettings.setWarningLevel(warnLevel);
+    calculateBillWithSettings.setCriticalLevel(critLevel);
 
-}
-function tCostOfBill(billItemType) {
-    if (billItemType === "call") {
-        callCostTotal += callCostVal;
-        allCostTotal += callCostVal;
-    }
-    else if (billItemType === "sms") {
-        smsCostTotal += smsCostVal;
+};
 
-        allCostTotal += smsCostVal;
-    }
-}
-function styleTotal(roundedBillTotal) {
-    const currentTotal = Number(roundedBillTotal);
-    totalCostElem.classList.remove("danger");
-    totalCostElem.classList.remove("warning");
-    if (currentTotal >= warnLevel && currentTotal < critLevel) {
-        //make orange
-        totalCostElem.classList.add("warning");
-    }
-
-    else if (currentTotal >= critLevel) {
-        //make red
-        totalCostElem.classList.add("danger")
-
-    }
-
-}
 function clicked() {
 
     var radioSmsCall = document.querySelector("input[name='billItemTypeWithSettings']:checked");
-
-    var item = radioSmsCall.value;
-    if (allCostTotal < critLevel) {
-
-
-        tCostOfBill(item);
     
-    callCostElem.innerHTML = callCostTotal.toFixed(2);
-    smsCostElem.innerHTML = smsCostTotal.toFixed(2)
-    totalCostElem.innerHTML = allCostTotal.toFixed(2);
-    styleTotal(allCostTotal);
-    }
-}
+        var item = radioSmsCall.value;
+
+    calculateBillWithSettings.calculateTot(item);
+
+    var callC = calculateBillWithSettings.getTotalCallCost();
+    var smsC = calculateBillWithSettings.getTotalSmsCost();
+    var totC = calculateBillWithSettings.getTotalCost();
+    var colourTotal = calculateBillWithSettings.totalClassName();
+
+    callCostElem.innerHTML = callC.toFixed(2);
+    smsCostElem.innerHTML = smsC.toFixed(2);
+    totalCostElem.innerHTML = totC.toFixed(2);
+    totalCostElem.classList = colourTotal;
+  
+};
 
 btnAdd.addEventListener("click", clicked);
 btnUpd.addEventListener("click", update)

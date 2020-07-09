@@ -31,7 +31,7 @@ function RadioBill() {
         if (getTotal() >= warning && getTotal() < critical) {
             return "warning";
         } else if (getTotal() >= critical) {
-            return "critical";
+            return "danger";
         }
     }
 

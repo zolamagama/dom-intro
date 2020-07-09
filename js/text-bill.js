@@ -22,46 +22,18 @@ const billTypeText = document.querySelector(".billTypeText");
 
 const color = document.querySelector(".red");
 
-var callTotal = 0;
-var smsTotal = 0;
-function textinputbill(textInput) {
-    var bString = textInput.split(",");
-    for (var i = 0; i < bString.length; i++) {
-        var billItems = bString[i].trim();
-        if (billItems === 'sms') {
-
-            smsTotal += 0.75;
-
-        } else if (billItems === 'call') {
-            callTotal += 2.75;
-
-        }
-    }
-    var totalCost = (smsTotal + callTotal).toFixed(2)
-    return totalCost
-
-}
-function styleCode(totalCost) {
-    var bill = Number(totalCost);
-
-    totalElem2.classList.remove("warning");
-
-    totalElem2.classList.remove("totaldanger")
-    if (bill >= 50) {
-        totalElem2.classList.add("danger");
-    }
-    else if (bill >= 30 && bill < 50) {
-        totalElem2.classList.add("warning");
-    }
-}
+const calculateTextBill = TextBill()
 
 function clickFunction() {
     var string = billTypeText.value;
-    var totalCost = textinputbill(string);
-    smsTotalCost.innerHTML = smsTotal.toFixed(2);
-    callTotalCost.innerHTML = callTotal.toFixed(2);
-    styleCode(totalCost)
-    totalElem2.innerHTML = totalCost;
+    calculateTextBill.billEntered(string);
+
+    smsTotalCost.innerHTML = calculateTextBill.smsCostTotal();
+    callTotalCost.innerHTML = calculateTextBill.callCostTotal();
+    
+    totalElem2.classList = calculateTextBill.levelColor();
+
+    totalElem2.innerHTML = calculateTextBill.costTotal();
 }
 addToBillBtn.addEventListener("click", clickFunction);
 

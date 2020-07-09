@@ -14,45 +14,30 @@ const callTotalTwoElement  = document.querySelector(".callTotalTwo");
 
 const totalTwoElement  = document.querySelector(".totalTwo");
 
+const calculateRadioBill = RadioBill();
+
 //const billItemTypeRadioElement  = document.querySelector(".billItemTypeRadio");
 
 //const billTypeText = document.querySelector(".billTypeText");
 
-var smsTotal2= 0;
-var callTotal2 = 0;
+// var smsTotal2= 0;
+// var callTotal2 = 0;
 
 function radioBillTotal(){
   
 var checkedRadio = document.querySelector("input[name='billItemType']:checked");
 var x = checkedRadio.value;
 //console.log(billString)
+calculateRadioBill.radioButtons(x);
 
-if (x === 'call'){
-callTotal2 += 2.75;
-} else if (x === 'sms'){
-smsTotal2 += 0.75;
-}
   // update your DOM here - callTotal, SmsTotal and GrandTotal
 
 
-callTotalTwoElement.innerHTML= callTotal2.toFixed(2);
-smsTotalTwoElement.innerHTML= smsTotal2.toFixed(2);
-var totalCost = callTotal2 + smsTotal2;
-totalTwoElement.innerHTML= totalCost.toFixed(2);
-
-
-
-
-
- if (totalCost>= 50){
-         totalTwoElement.classList.add("danger");
-    }
-    else if (totalCost >= 30){
-        totalTwoElement.classList.add("warning");
-   }
-
-
-// call the correct function here, the one with your logic
+callTotalTwoElement.innerHTML= calculateRadioBill.getCall().toFixed(2);
+smsTotalTwoElement.innerHTML= calculateRadioBill.getSms().toFixed(2);
+totalTwoElement.innerHTML= calculateRadioBill.getTotal().toFixed(2);
+totalTwoElement.classList = calculateRadioBill.totalClassName()
 }
+
   
-radioBillAddBtnElement.addEventListener("click", radioBillTotal);
+radioBillAddBtnElement.addEventListener("click", radioBillTotal)

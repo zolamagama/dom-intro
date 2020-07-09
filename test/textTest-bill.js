@@ -1,45 +1,99 @@
-function TextBill(){
-    var callValue = 0;
-    var smsValue = 0;
-    var totalValue = 0;
 
-    const warningValue = 30;
-    const criticalValue = 50;
+describe("The text bill function", function(){
+    it('Should be able to add call at 2.75', function(){
+        var billType = TextBill();
+        
+        billType.billEntered("call");
+        assert.equal(billType.callCostTotal(), 2.75);
+    })
+    it('Should be able to send sms at 0.75', function(){
+        var billType = TextBill();
+        
+        billType.billEntered("sms");
+        assert.equal(billType.smsCostTotal(), 0.75);
+    })
+    it("Should be able to return total", function(){
+        var billType = TextBill();
 
-    function callCostTotal(){
-        return callValue;
-    }
+        billType.billEntered("call");
+        billType.billEntered("sms");
+        assert.equal(billType.costTotal(), 3.50)
+    })
+    it("Should be able to add more than one call", function(){
+        var billType = TextBill();
 
-    function smsCostTotal(){
-        return smsValue;
-    }
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        assert.equal(billType.callCostTotal(), 8.25)
+    })
+    it("Should be able to add more than one sms", function(){
+        var billType = TextBill();
 
-    function costTotal(){
-        totalValue = callValue + smsValue;
-        return totalValue;
-    }
+        billType.billEntered("sms");
+        billType.billEntered("sms");
+        billType.billEntered("sms");
+        assert.equal(billType.smsCostTotal(), 2.25)
+    })
+    it("Should return a class name of warning if total reached 30", function(){
+        var billType  = TextBill();
 
-    function billEntered(enteredBill){
-        if(enteredBill === "call"){
-            callValue += 2.75;
-        } else if(enteredBill === "sms"){
-            smsValue += 0.75;
-        }
-    }
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("sms");
+        billType.billEntered("sms");
+        billType.billEntered("sms");
+        billType.billEntered("sms");
+        billType.billEntered("sms");
+        billType.billEntered("sms");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
 
-    function levelColor(){
-        if(costTotal() >= warningValue && costTotal() < criticalValue){
-            return "warning";
-        } else if(costTotal() >= criticalValue){
-            return "critical";
-        }
-    }
+        assert.equal(billType.levelColor(), "warning");
+    })
+    it("Should return a class name of danger if total reached 50", function(){
+        var billType  = TextBill();
 
-    return {
-        callCostTotal,
-        smsCostTotal,
-        costTotal,
-        billEntered,
-        levelColor
-    }
-}
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("sms");
+        billType.billEntered("sms");
+        billType.billEntered("sms");
+        billType.billEntered("sms");
+        billType.billEntered("sms");
+        billType.billEntered("sms");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("sms");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+        billType.billEntered("call");
+
+        assert.equal(billType.levelColor(), "danger");
+    })
+})

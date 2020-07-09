@@ -63,7 +63,7 @@ describe('The radio-bill function', function(){
         assert.equal(itemType.totalClassName(), "warning");
     })
     
-    it('Should return a class name of critical if total reached 50', function(){
+    it('Should return a class name of danger if total reached 50', function(){
         var itemType = RadioBill();
 
         itemType.radioButtons("sms");
@@ -102,6 +102,6 @@ describe('The radio-bill function', function(){
         itemType.radioButtons("call");
         itemType.radioButtons("call");
         itemType.radioButtons("call");
-        assert.equal(itemType.totalClassName(), "critical");
+        assert.equal(itemType.totalClassName(), "danger");
     })
 })
