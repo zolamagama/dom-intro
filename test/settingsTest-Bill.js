@@ -163,7 +163,7 @@ settingsBill.calculateTot("sms");
 
 });
 
-it ("should return a class name of 'critical' if critical level has been reached", function() {
+it ("should return a class name of 'danger' if critical level has been reached", function() {
 
     let settingsBill = BillWithSettings();
 
@@ -183,7 +183,7 @@ settingsBill.calculateTot("sms");
 
 });
 
-it ("should stop the Call Total from increasing when the critical level has been reached", function() {
+it ("should stop the call total from increasing when the critical level has been reached", function() {
 
     let settingsBill = BillWithSettings();
 
