@@ -14,19 +14,52 @@
 
 const calculateBtn = document.querySelector(".calculateBtn");
 const billTotalElement = document.querySelector(".billTotal");
-const billStringField = document.querySelector(".billString")
-//get a reference to the billTotal element
+const billStringField = document.querySelector(".billString");
 const billTotalSpanElement = document.querySelector(".total")
 
-const calculateBill = CalculateBill()
+function totalPhoneBill(billString){
+   //split the string
+    var billItems = billString.split(",");
+    // a variable for the total phone bill.
+    var billTotal = 0;
+    //loop over all the bill items
+    for (var i=0;i<billItems.length;i++){
+        var billItem = billItems[i].trim();
+        if (billItem === "call"){
+            billTotal += 2.75;
+        }
+        else if (billItem === "sms"){
+            billTotal += 0.75;
+        }
+}
+  var roundedBillTotal = billTotal.toFixed(2);
+  return roundedBillTotal;
+}
+function styleTotalColor(roundedBillTotal) {
+  const currentTotal = Number(roundedBillTotal);
+    billTotalSpanElement.classList.remove("danger");
+    billTotalSpanElement.classList.remove("warning");
 
-function calculateBtnClicked() {
-    // get the string entered in the textArea
+  if (currentTotal >= 30) {
+    // make the total red
+    billTotalSpanElement.classList.add("danger");
+  } else if(currentTotal >= 20 && currentTotal < 30) {
+    // make the total orange
+    billTotalSpanElement.classList.add("warning");
+  }
+  
+}
+
+function calculateBtnClicked(){
+      // get the string entered in the textArea
     var billString = billStringField.value;
-    calculateBill.billType(billString)
-    billTotalElement.innerHTML = calculateBill.returnTotal();
-    billTotalElement.classList = calculateBill.color();
+   
+    const roundedBillTotal = totalPhoneBill(billString);
+    styleTotalColor(roundedBillTotal);
+    billTotalElement.innerHTML = roundedBillTotal;
 }
 
 calculateBtn.addEventListener("click", calculateBtnClicked);
+
+
 

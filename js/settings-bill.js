@@ -38,10 +38,12 @@ function update() {
     var smsCostVal = Number(smsCost.value);
     var warnLevel = Number(warningLevel.value);
     var critLevel = Number(criticalLevel.value);
+    // var colourTotal = calculateBillWithSettings.totalClassName();
     calculateBillWithSettings.setCallCost(callCostVal);
     calculateBillWithSettings.setSmsCost(smsCostVal);
     calculateBillWithSettings.setWarningLevel(warnLevel);
     calculateBillWithSettings.setCriticalLevel(critLevel);
+    totalCostElem.classList = colourTotal;
 
 };
 

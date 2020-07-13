@@ -28,12 +28,12 @@ function clickFunction() {
     var string = billTypeText.value;
     calculateTextBill.billEntered(string);
 
-    smsTotalCost.innerHTML = calculateTextBill.smsCostTotal();
-    callTotalCost.innerHTML = calculateTextBill.callCostTotal();
+    smsTotalCost.innerHTML = calculateTextBill.smsCostTotal().toFixed(2);
+    callTotalCost.innerHTML = calculateTextBill.callCostTotal().toFixed(2);
     
     totalElem2.classList = calculateTextBill.levelColor();
 
-    totalElem2.innerHTML = calculateTextBill.costTotal();
+    totalElem2.innerHTML = calculateTextBill.costTotal().toFixed(2);
 }
 addToBillBtn.addEventListener("click", clickFunction);
 
